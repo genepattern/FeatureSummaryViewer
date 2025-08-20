@@ -1,9 +1,9 @@
 <!--
-  ~ Copyright 2012 The Broad Institute, Inc.
+  ~ Copyright 2025 The Regents of the University of California
   ~ SOFTWARE COPYRIGHT NOTICE
-  ~ This software and its documentation are the copyright of the Broad Institute, Inc. All rights are reserved.
+  ~ This software and its documentation are the copyright of the Regents of the University of California, Inc. All rights are reserved.
   ~
-  ~ This software is supplied without any warranty or guaranteed support whatsoever. The Broad Institute is not responsible for its use, misuse, or functionality.
+  ~ This software is supplied without any warranty or guaranteed support whatsoever. The Regents of the University of California are not responsible for its use, misuse, or functionality.
   -->
 
 <!DOCTYPE html>
@@ -12,10 +12,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <title>Prediction Results Viewer</title>
+    <title>Feature Summary Viewer</title>
 
     <!-- Load require.js -->
-    <script data-main="js/prediction_results_viewer" src="js/require.js"></script>
+    <script data-main="js/feature_summary_viewer" src="js/require.js"></script>
 
     <!-- jQuery UI CSS -->
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.css"/>
@@ -24,11 +24,35 @@
     <link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>
 
     <!-- PredictionResultsViewer CSS -->
-    <link rel="stylesheet" type="text/css" href="css/prediction_results_viewer.css">
+    <link rel="stylesheet" type="text/css" href="css/feature_summary_viewer.css">
 
     <!-- Font Awesome CSS from CDN-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        width: 100%;
+      }
+      
+      #plot-div {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      
+      /* Fix table width */
+      #table-div {
+        width: 100%;
+        overflow-x: hidden;
+      }
+      
+      #table-div table {
+        width: 100% !important;
+      }
+    </style>
+    
 </head>
 
 <body>
@@ -39,64 +63,14 @@
 
 <div id="plot-div"></div>
 
-<div id="middle-div" style="display: none;">
-    <div class="middle-left">
-        <div>
-            <label class="middle-label">Absolute Error</label> <span id="absolute-error"></span>
-        </div>
-        <div>
-            <label class="middle-label">No Calls</label> <span id="no-calls"></span>
-        </div>
-        <div>
-            <label class="middle-label">ROC Error</label> <span id="roc-error"></span>
-        </div>
-        <div>
-            <label class="middle-label">Predictor</label> <span id="predictor"></span>
-        </div>
-        <div>
-            <label class="middle-label">Features</label> <span id="features"></span>
-        </div>
-        <div>
-            <label class="middle-label">No Call Threshold</label> <input id="threshold-value" type="number" pattern="[0-9]+(\.[0-9]{0,2})?%?" value="0.0"/> <button id="update-button">Update</button>
-        </div>
-    </div>
-    <div class="middle-right">
-        <table id="confusion-matrix" class="display">
-            <thead>
-                <tr>
-                    <th colspan="3">Confusion Matrix</th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <th id="predicted-1"></th>
-                    <th id="predicted-2"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th id="true-1"></th>
-                    <td id="predicted-1-true-1"></td>
-                    <td id="predicted-1-true-2"></td>
-                </tr>
-                <tr>
-                    <th id="true-2"></th>
-                    <td id="predicted-2-true-1"></td>
-                    <td id="predicted-2-true-2"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
 
 <div id="table-div" style="display: none;">
     <table class="display">
         <thead>
             <tr>
-                <th>Samples</th>
-                <th>True Class</th>
-                <th>Predicted Class</th>
-                <th>Confidence</th>
-                <th>Correct</th>
+                <th>Feature Name</th>
+                <th>Description</th>
+                <th>Count</th>
             </tr>
         </thead>
         <tbody></tbody>
