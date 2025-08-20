@@ -32,7 +32,7 @@ requiredPatchURLs=http\://software.broadinstitute.org/webservices/gpModuleReposi
 
 serializedModel=
 taskType=javascript
-taskDoc=doc.html
+taskDoc=https://github.com/genepattern/FeatureSummaryViewer/blob/develop/docs/FeatureSummaryViewer.pdf
 userid=
 
 publicationDate=07/13/2021 11\:11 
